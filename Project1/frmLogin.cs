@@ -18,12 +18,6 @@ namespace Project1
             InitializeComponent();
         }
 
-        private void Login_Click(object sender, EventArgs e)
-        {
-            new frmRegister().Show();
-            this.Hide();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             txtUserName.Text = "";
@@ -42,21 +36,24 @@ namespace Project1
             }
         }
 
-        private void btnRegister_Click(object sender, EventArgs e)
+
+        private void btnLogin_Click(object sender, EventArgs e)
         {
-            //add userInfo from customerList to hashMap
-            foreach (Customer current in Lists.customerList)
-            {
-                Lists.hashMap.Add(current.UserName, current.Password);
-            }
-            if (txtUserName.Text == "" || txtPassword.Text == "" )
+            if (txtUserName.Text == "" || txtPassword.Text == "")
             {
                 MessageBox.Show("Make sure to fill all fields", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if ((txtUserName.Text== "admin") && (txtPassword.Text=="admin"))
+            {
+                MessageBox.Show("Succeseful Login", "You Will be Moved to The Admin Panel", MessageBoxButtons.OK);
+                new frmAdminPanel().Show();
+                this.Hide();
+            }
             // validate login
-            else if (Lists.hashMap.ContainsKey(txtUserName.Text) && Lists.hashMap["txtUserName.Text"] == txtPassword.Text)
+            else if (Lists.hashMap.ContainsKey(txtUserName.Text) && Lists.hashMap[txtUserName.Text].Equals(txtPassword.Text))
             {
                 MessageBox.Show("Succeseful Login", "Credentials Match", MessageBoxButtons.OK);
+                Lists.userToWelcome = txtUserName.Text;
                 new frmProgram().Show();
                 this.Hide();
             }
@@ -64,7 +61,17 @@ namespace Project1
             {
                 MessageBox.Show("Unsucceseful Login", "Credentials don't Match", MessageBoxButtons.OK);
             }
-            
+        }
+
+        private void Register_Click(object sender, EventArgs e)
+        {
+            new frmRegister().Show();
+            this.Hide();
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

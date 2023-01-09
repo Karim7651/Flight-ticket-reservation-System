@@ -12,11 +12,11 @@ namespace Project
     {
         private int nationalId;
 
-        public Customer(string userName, string password, int nationalId) : base(userName, password)
+        public Customer(string username, string password, int nationalId):base(username, password)
         {
-            this.nationalId = nationalId;
+            NationalId = nationalId;
         }
 
-        public int Nat{ set; get; }
+        public int NationalId{ set; get; }
     }
 }

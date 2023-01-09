@@ -12,11 +12,15 @@ namespace Project1
         
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            if(txtUserName.Text == "" || txtPassword.Text == "" || confrimPassword.Text == "" || nationalID.Text == "")
+            if (txtUserName.Text == "" || txtPassword.Text == "" || confrimPassword.Text == "" || nationalID.Text == "")
             {
                 MessageBox.Show("Make sure to fill all fields", "Registeration Failed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }else if(txtPassword.Text != confrimPassword.Text){
                 MessageBox.Show("passwords don't match", "Registeration Failed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (Lists.hashMap.ContainsKey(txtUserName.Text))
+            {
+                MessageBox.Show("This Account Already Exists", "Try Using Another Username", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -25,6 +29,7 @@ namespace Project1
                 string user = txtUserName.Text;
                 string password = txtPassword.Text;
                 Lists.customerList.Add(new Customer(user, password, national));
+                Lists.hashMap.Add(user, password);
                 // write that to end of the file or create
                 StreamWriter sw = File.AppendText("D:\\Customers.txt");
                 sw.WriteLine(user);
@@ -59,6 +64,11 @@ namespace Project1
         {
             new frmLogin().Show();
             this.Hide();
+        }
+
+        private void frmRegister_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

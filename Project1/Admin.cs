@@ -8,13 +8,13 @@ namespace Project
 {
     public class Admin
     {
-        private string userName;
+        private string username;
         private string password;
         public Admin() { }
-        public Admin(string userName, string password)
+        public Admin(string username, string password)
         {
-            this.userName = userName;
-            this.password = password;
+            UserName = username;
+            Password = password;
         }
         public string UserName { set; get; }
         public string Password { set; get; }

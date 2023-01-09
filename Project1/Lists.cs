@@ -13,5 +13,8 @@ namespace Project1
         static public List<Customer> customerList = new List<Customer>();
         static public List<Ticket> ticketList = new List<Ticket>();
         static public Dictionary<string, string> hashMap = new Dictionary<string, string>();
+        static public String userToWelcome;
+        static public int price;
+        static public List<int> soldTickets= new List<int>();
     }
 }
